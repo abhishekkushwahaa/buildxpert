@@ -1,76 +1,117 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-  @layer base {
-    :root {
-      --background: 0 0% 100%;
-      --foreground: 222.2 84% 4.9%;
+html,
+body {
+  height: 100vh;
+}
 
-      --card: 0 0% 100%;
-      --card-foreground: 222.2 84% 4.9%;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-      --popover: 0 0% 100%;
-      --popover-foreground: 222.2 84% 4.9%;
+/* 
+R (0)
+G (110)
+B (255 */
 
-      --primary: 222.2 47.4% 11.2%;
-      --primary-foreground: 210 40% 98%;
+@layer base {
+  :root {
+    /* Name: custom color palette
+       Author: Ilias Ism
+       URL: https://gradient.page */
 
-      --secondary: 210 40% 96.1%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
+    /* CSS: .bg-gradient { background: var(--gradient) } */
+    --gradient: linear-gradient(to top left, #a1ffce, #faffd1);
 
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
+    --background: 158 65% 6.56%;
+    --foreground: 158 10% 99.1%;
 
-      --accent: 210 40% 96.1%;
-      --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 158 50% 24.599999999999998%;
+    --muted-foreground: 158 10% 58.2%;
 
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 210 40% 98%;
+    --popover: 158 45% 10.66%;
+    --popover-foreground: 158 10% 99.1%;
 
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-      --ring: 222.2 84% 4.9%;
+    --card: 158 45% 10.66%;
+    --card-foreground: 158 10% 99.1%;
 
-      --radius: 0.5rem;
-    }
+    --border: 158 50% 24.599999999999998%;
+    --input: 158 50% 24.599999999999998%;
 
-    .dark {
-      --background: 222.2 84% 4.9%;
-      --foreground: 210 40% 98%;
+    --primary: 158 100% 82%;
+    --primary-foreground: 158 10% 8.2%;
 
-      --card: 222.2 84% 4.9%;
-      --card-foreground: 210 40% 98%;
+    --secondary: 158 50% 24.599999999999998%;
+    --secondary-foreground: 158 10% 99.1%;
 
-      --popover: 222.2 84% 4.9%;
-      --popover-foreground: 210 40% 98%;
+    --accent: 158 50% 24.599999999999998%;
+    --accent-foreground: 158 10% 99.1%;
 
-      --primary: 210 40% 98%;
-      --primary-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 158 10% 99.1%;
 
-      --secondary: 217.2 32.6% 17.5%;
-      --secondary-foreground: 210 40% 98%;
-
-      --muted: 217.2 32.6% 17.5%;
-      --muted-foreground: 215 20.2% 65.1%;
-
-      --accent: 217.2 32.6% 17.5%;
-      --accent-foreground: 210 40% 98%;
-
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 210 40% 98%;
-
-      --border: 217.2 32.6% 17.5%;
-      --input: 217.2 32.6% 17.5%;
-      --ring: 212.7 26.8% 83.9%;
-    }
+    --ring: 158 100% 82%;
   }
 
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    }
+  .dark {
+    --gradient: linear-gradient(to top left, #a1ffce, #faffd1);
+
+    --background: 158 65% 6.56%;
+    --foreground: 158 10% 99.1%;
+
+    --muted: 158 50% 24.599999999999998%;
+    --muted-foreground: 158 10% 58.2%;
+
+    --popover: 158 45% 10.66%;
+    --popover-foreground: 158 10% 99.1%;
+
+    --card: 158 45% 10.66%;
+    --card-foreground: 158 10% 99.1%;
+
+    --border: 158 50% 24.599999999999998%;
+    --input: 158 50% 24.599999999999998%;
+
+    --primary: 158 100% 82%;
+    --primary-foreground: 158 10% 8.2%;
+
+    --secondary: 158 50% 24.599999999999998%;
+    --secondary-foreground: 158 10% 99.1%;
+
+    --accent: 158 50% 24.599999999999998%;
+    --accent-foreground: 158 10% 99.1%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 158 10% 99.1%;
+
+    --ring: 158 100% 82%;
   }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.use-automation-zoom-in {
+  animation: automation-zoom-in 0.5s;
+}
+
+@keyframes automation-zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
