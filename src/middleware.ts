@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
 export function middleware(req: any) {
   const url = new URL(req.url);
@@ -12,7 +13,7 @@ export function middleware(req: any) {
     return NextResponse.rewrite(new URL("/site", req.url));
   }
 
-  return NextResponse.next();
+  return clerkMiddleware(req, NextResponse.next());
 }
 
 export const config = {
