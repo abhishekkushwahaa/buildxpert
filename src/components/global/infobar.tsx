@@ -54,8 +54,8 @@ const InfoBar = ({ notifications, subAccountId, className, role }: Props) => {
           <UserButton afterSignOutUrl="/" />
           <Sheet>
             <SheetTrigger>
-              <div className="rounded-full w-9 h-9 bg-muted flex items-center justify-center text-white">
-                <Bell size={17} />
+              <div className="rounded-full w-8 h-8 bg-muted flex items-center justify-center text-white">
+                <Bell size={16} />
               </div>
             </SheetTrigger>
             <SheetContent className="mt-2 mr-2 pr-2">

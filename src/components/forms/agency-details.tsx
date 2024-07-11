@@ -375,7 +375,7 @@ const AgencyDetails = ({ data }: Props) => {
                       router.refresh();
                     }}
                     min={1}
-                    className="bg-background !border !border-input"
+                    className="bg-background !border !border-input pl-1"
                     placeholder="Sub Account Goal"
                   />
                 </div>
