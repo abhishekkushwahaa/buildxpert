@@ -32,6 +32,7 @@ import { saveActivityLogsNotification, upsertSubAccount } from "@/lib/queries";
 import { useEffect } from "react";
 import Loading from "../global/loading";
 import { useModal } from "@/providers/model-provider";
+import { ScrollArea } from "../ui/scroll-area";
 
 const formSchema = z.object({
   name: z.string(),
@@ -44,10 +45,6 @@ const formSchema = z.object({
   state: z.string(),
   country: z.string(),
 });
-
-//CHALLENGE Give access for Subaccount Guest they should see a different view maybe a form that allows them to create tickets
-
-//CHALLENGE layout.tsx oonly runs once as a result if you remove permissions for someone and they keep navigating the layout.tsx wont fire again. solution- save the data inside metadata for current user.
 
 interface SubAccountDetailsProps {
   //To add the sub account to the agency
@@ -131,162 +128,164 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
 
   const isLoading = form.formState.isSubmitting;
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="text-xl">Sub Account Information</CardTitle>
-        <CardDescription>Please enter business details</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              disabled={isLoading}
-              control={form.control}
-              name="subAccountLogo"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Account Logo</FormLabel>
-                  <FormControl>
-                    <FileUpload
-                      apiEndpoint="subaccountLogo"
-                      value={field.value}
-                      onChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex md:flex-row gap-4">
+    <ScrollArea className="h-[450px] w-full rounded-md border">
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle className="text-xl">Sub Account Information</CardTitle>
+          <CardDescription>Please enter business details</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 disabled={isLoading}
                 control={form.control}
-                name="name"
+                name="subAccountLogo"
                 render={({ field }) => (
-                  <FormItem className="flex-1">
-                    <FormLabel>Account Name</FormLabel>
+                  <FormItem>
+                    <FormLabel>Account Logo</FormLabel>
                     <FormControl>
-                      <Input
-                        required
-                        placeholder="Your agency name"
-                        {...field}
+                      <FileUpload
+                        apiEndpoint="subaccountLogo"
+                        value={field.value}
+                        onChange={field.onChange}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <FormField
-                disabled={isLoading}
-                control={form.control}
-                name="companyEmail"
-                render={({ field }) => (
-                  <FormItem className="flex-1">
-                    <FormLabel>Acount Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Email" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="flex md:flex-row gap-4">
-              <FormField
-                disabled={isLoading}
-                control={form.control}
-                name="companyPhone"
-                render={({ field }) => (
-                  <FormItem className="flex-1">
-                    <FormLabel>Acount Phone Number</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Phone" required {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+              <div className="flex md:flex-row gap-4">
+                <FormField
+                  disabled={isLoading}
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem className="flex-1">
+                      <FormLabel>Account Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          required
+                          placeholder="Your agency name"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  disabled={isLoading}
+                  control={form.control}
+                  name="companyEmail"
+                  render={({ field }) => (
+                    <FormItem className="flex-1">
+                      <FormLabel>Acount Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="flex md:flex-row gap-4">
+                <FormField
+                  disabled={isLoading}
+                  control={form.control}
+                  name="companyPhone"
+                  render={({ field }) => (
+                    <FormItem className="flex-1">
+                      <FormLabel>Acount Phone Number</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Phone" required {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-            <FormField
-              disabled={isLoading}
-              control={form.control}
-              name="address"
-              render={({ field }) => (
-                <FormItem className="flex-1">
-                  <FormLabel>Address</FormLabel>
-                  <FormControl>
-                    <Input required placeholder="123 st..." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex md:flex-row gap-4">
               <FormField
                 disabled={isLoading}
                 control={form.control}
-                name="city"
+                name="address"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>City</FormLabel>
+                    <FormLabel>Address</FormLabel>
                     <FormControl>
-                      <Input required placeholder="City" {...field} />
+                      <Input required placeholder="123 st..." {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+              <div className="flex md:flex-row gap-4">
+                <FormField
+                  disabled={isLoading}
+                  control={form.control}
+                  name="city"
+                  render={({ field }) => (
+                    <FormItem className="flex-1">
+                      <FormLabel>City</FormLabel>
+                      <FormControl>
+                        <Input required placeholder="City" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  disabled={isLoading}
+                  control={form.control}
+                  name="state"
+                  render={({ field }) => (
+                    <FormItem className="flex-1">
+                      <FormLabel>State</FormLabel>
+                      <FormControl>
+                        <Input required placeholder="State" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  disabled={isLoading}
+                  control={form.control}
+                  name="zipCode"
+                  render={({ field }) => (
+                    <FormItem className="flex-1">
+                      <FormLabel>Zipcpde</FormLabel>
+                      <FormControl>
+                        <Input required placeholder="Zipcode" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
               <FormField
                 disabled={isLoading}
                 control={form.control}
-                name="state"
+                name="country"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>State</FormLabel>
+                    <FormLabel>Country</FormLabel>
                     <FormControl>
-                      <Input required placeholder="State" {...field} />
+                      <Input required placeholder="Country" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <FormField
-                disabled={isLoading}
-                control={form.control}
-                name="zipCode"
-                render={({ field }) => (
-                  <FormItem className="flex-1">
-                    <FormLabel>Zipcpde</FormLabel>
-                    <FormControl>
-                      <Input required placeholder="Zipcode" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <FormField
-              disabled={isLoading}
-              control={form.control}
-              name="country"
-              render={({ field }) => (
-                <FormItem className="flex-1">
-                  <FormLabel>Country</FormLabel>
-                  <FormControl>
-                    <Input required placeholder="Country" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" disabled={isLoading}>
-              {isLoading ? <Loading /> : "Save Account Information"}
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? <Loading /> : "Save Account Information"}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    </ScrollArea>
   );
 };
 

@@ -11,7 +11,7 @@ type Props = {
   title: string;
   subheading: string;
   children: React.ReactNode;
-  defaultOpen: boolean;
+  defaultOpen?: boolean;
 };
 const CustomModal = ({ title, subheading, children, defaultOpen }: Props) => {
   const { isOpen, setClose } = useModal();
