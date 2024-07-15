@@ -37,7 +37,7 @@ import {
 import { toast } from "@/components/ui/use-toast";
 import { deleteTicket, saveActivityLogsNotification } from "@/lib/queries";
 import { TicketWithTags } from "@/lib/types";
-import { useModal } from "@/providers/model-provider";
+import { useModal } from "@/providers/modal-provider";
 import { Contact2, Edit, MoreHorizontalIcon, Trash, User2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction } from "react";
@@ -136,7 +136,7 @@ const PipelineTicket = ({
           >
             <AlertDialog>
               <DropdownMenu>
-                <Card className="my-4 dark:bg-slate-900 bg-white shadow-none transition-all">
+                <Card className="my-4 dark:bg-slate-900 bg-muted shadow-none transition-all">
                   <CardHeader className="p-[12px]">
                     <CardTitle className="flex items-center justify-between">
                       <span className="text-lg w-full">{ticket.name}</span>

@@ -31,7 +31,7 @@ import React, { Dispatch, SetStateAction, useMemo } from "react";
 import CustomModal from "@/components/global/custom-modal";
 import TicketForm from "@/components/forms/ticket-form";
 import PipelineTicket from "./pipeline-ticket";
-import { useModal } from "@/providers/model-provider";
+import { useModal } from "@/providers/modal-provider";
 
 interface PipelaneLaneProps {
   setAllTickets: Dispatch<SetStateAction<TicketWithTags>>;
@@ -140,10 +140,10 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
           >
             <AlertDialog>
               <DropdownMenu>
-                <div className="bg-slate-200/30 dark:bg-background/20  h-[700px] w-[300px] px-4 relative rounded-lg overflow-visible flex-shrink-0 ">
+                <div className="w-[300px] px-4 relative rounded-lg flex-shrink-0 ">
                   <div
                     {...provided.dragHandleProps}
-                    className=" h-14 backdrop-blur-lg dark:bg-background/40 bg-slate-200/60  absolute top-0 left-0 right-0 z-10 "
+                    className=" h-14 backdrop-blur-lg absolute top-0 left-0 right-0 z-10 "
                   >
                     <div className="h-full flex items-center p-4 justify-between cursor-grab border-b-[1px] ">
                       {/* {laneDetails.order} */}
@@ -173,7 +173,7 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
                     type="ticket"
                   >
                     {(provided) => (
-                      <div className=" max-h-[700px] overflow-scroll pt-12 ">
+                      <div className="max-h-[700px] pt-12 ">
                         <div
                           {...provided.droppableProps}
                           ref={provided.innerRef}

@@ -24,7 +24,7 @@ import {
 import Link from "next/link";
 import SubAccountDetails from "../forms/subaccount-details";
 import CustomModal from "../global/custom-modal";
-import { useModal } from "@/providers/model-provider";
+import { useModal } from "@/providers/modal-provider";
 import { Separator } from "../ui/separator";
 import { icons } from "@/lib/constants";
 type Props = {

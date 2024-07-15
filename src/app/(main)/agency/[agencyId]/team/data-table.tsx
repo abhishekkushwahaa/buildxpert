@@ -22,7 +22,7 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import CustomModal from "@/components/global/custom-modal";
-import { useModal } from "@/providers/model-provider";
+import { useModal } from "@/providers/modal-provider";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

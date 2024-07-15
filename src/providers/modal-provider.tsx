@@ -17,6 +17,7 @@ export type ModalData = {
     plans: PricesList["data"];
   };
 };
+
 type ModalContextType = {
   data: ModalData;
   isOpen: boolean;
@@ -47,7 +48,8 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   ) => {
     if (modal) {
       if (fetchData) {
-        setData({ ...data, ...(await fetchData()) } || {});
+        const fetchedData = await fetchData();
+        setData((prevData) => ({ ...prevData, ...fetchedData }));
       }
       setShowingModal(modal);
       setIsOpen(true);

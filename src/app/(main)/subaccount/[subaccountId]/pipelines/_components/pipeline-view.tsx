@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import PipelineLane from "./pipeline-lane";
-import { useModal } from "@/providers/model-provider";
+import { useModal } from "@/providers/modal-provider";
 
 type Props = {
   lanes: LaneDetail[];

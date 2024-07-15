@@ -47,7 +47,7 @@ import {
 } from "../ui/command";
 import { cn } from "@/lib/utils";
 import Loading from "../global/loading";
-import { useModal } from "@/providers/model-provider";
+import { useModal } from "@/providers/modal-provider";
 import TagCreator from "../global/tag-creator";
 
 type Props = {

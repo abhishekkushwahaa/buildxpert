@@ -33,7 +33,7 @@ import { v4 } from "uuid";
 import { toast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useModal } from "@/providers/model-provider";
+import { useModal } from "@/providers/modal-provider";
 
 interface CreatePipelineFormProps {
   defaultData?: Pipeline;

@@ -14,24 +14,34 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { useModal } from "@/providers/model-provider";
+import { useModal } from "@/providers/modal-provider";
 import { Pipeline } from "@prisma/client";
 import { Check, ChevronsUpDown, Plus } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 type Props = {
   subAccountId: string;
-  pipelines: Pipeline[];
+  pipelines?: Pipeline[];
   pipelineId: string;
 };
 
-const PipelineInfoBar = ({ pipelineId, pipelines, subAccountId }: Props) => {
+const PipelineInfoBar = ({
+  pipelineId,
+  pipelines = [],
+  subAccountId,
+}: Props) => {
   const { setOpen: setOpenModal, setClose } = useModal();
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState(pipelineId);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(pipelineId);
+
+  useEffect(() => {
+    console.log("Component mounted with pipelines:", pipelines);
+    console.log("Initial pipelineId:", pipelineId);
+  }, [pipelines, pipelineId]);
 
   const handleClickCreatePipeline = () => {
+    console.log("Creating a new pipeline...");
     setOpenModal(
       <CustomModal
         title="Create A Pipeline"
@@ -40,6 +50,12 @@ const PipelineInfoBar = ({ pipelineId, pipelines, subAccountId }: Props) => {
         <CreatePipelineForm subAccountId={subAccountId} />
       </CustomModal>
     );
+  };
+
+  const handleSelectPipeline = (currentValue: string) => {
+    console.log("Selected Pipeline ID:", currentValue);
+    setValue(currentValue);
+    setOpen(false);
   };
 
   return (
@@ -71,10 +87,7 @@ const PipelineInfoBar = ({ pipelineId, pipelines, subAccountId }: Props) => {
                     <CommandItem
                       key={pipeline.id}
                       value={pipeline.id}
-                      onSelect={(currentValue) => {
-                        setValue(currentValue);
-                        setOpen(false);
-                      }}
+                      onSelect={handleSelectPipeline}
                     >
                       <Check
                         className={cn(

@@ -43,7 +43,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { UsersWithAgencySubAccountPermissionsSidebarOptions } from "@/lib/types";
 import CustomModal from "@/components/global/custom-modal";
-import { useModal } from "@/providers/model-provider";
+import { useModal } from "@/providers/modal-provider";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const columns: ColumnDef<UsersWithAgencySubAccountPermissionsSidebarOptions>[] =

@@ -3,7 +3,7 @@ import "./globals.css";
 
 import localFont from "next/font/local";
 import { Toaster } from "@/components/ui/toaster";
-import ModalProvider from "@/providers/model-provider";
+import ModalProvider from "@/providers/modal-provider";
 import { Toaster as SonnarToaster } from "@/components/ui/sonner";
 const myFont = localFont({ src: "../font/font1.woff2" });
 
