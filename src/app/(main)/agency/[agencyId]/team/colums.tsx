@@ -44,6 +44,7 @@ import { useRouter } from "next/navigation";
 import { UsersWithAgencySubAccountPermissionsSidebarOptions } from "@/lib/types";
 import CustomModal from "@/components/global/custom-modal";
 import { useModal } from "@/providers/model-provider";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const columns: ColumnDef<UsersWithAgencySubAccountPermissionsSidebarOptions>[] =
   [
@@ -181,6 +182,7 @@ const CellActions: React.FC<CellActionsProps> = ({ rowData }) => {
             <Copy size={15} /> Copy Email
           </DropdownMenuItem>
           <DropdownMenuSeparator />
+
           <DropdownMenuItem
             className="flex gap-2"
             onClick={() => {
@@ -204,6 +206,7 @@ const CellActions: React.FC<CellActionsProps> = ({ rowData }) => {
             <Edit size={15} />
             Edit Details
           </DropdownMenuItem>
+
           {rowData.role !== "AGENCY_OWNER" && (
             <AlertDialogTrigger asChild>
               <DropdownMenuItem className="flex gap-2" onClick={() => {}}>

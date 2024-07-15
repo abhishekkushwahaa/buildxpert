@@ -180,7 +180,7 @@ const AgencyDetails = ({ data }: Props) => {
 
   return (
     <AlertDialog>
-      <ScrollArea className="h-[450px] w-full rounded-md border">
+      <ScrollArea className="h-full w-full rounded-md border">
         <Card className="w-full">
           <CardHeader>
             <CardTitle>Agency Information</CardTitle>

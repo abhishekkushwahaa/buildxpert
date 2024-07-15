@@ -206,7 +206,7 @@ const UserDetails = ({ id, type, userData, subAccounts }: Props) => {
   };
 
   return (
-    <ScrollArea className="h-[450px] w-full rounded-md border">
+    <ScrollArea className="h-full w-full rounded-md border">
       <Card className="w-full">
         <CardHeader>
           <CardTitle>User Details</CardTitle>
