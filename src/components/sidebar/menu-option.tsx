@@ -12,7 +12,7 @@ import { ChevronsUpDown, Compass, Menu, PlusCircleIcon } from "lucide-react";
 import clsx from "clsx";
 import { AspectRatio } from "../ui/aspect-ratio";
 import Image from "next/image";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popoverDialog";
 import {
   Command,
   CommandEmpty,
