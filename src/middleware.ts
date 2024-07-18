@@ -1,20 +1,49 @@
 import { NextResponse } from "next/server";
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { authMiddleware } from "@clerk/nextjs/server";
 
-export function middleware(req: any) {
-  const url = new URL(req.url);
-  const hostname = req.headers.get("host");
-  const expectedDomain = process.env.NEXT_PUBLIC_DOMAIN;
+export default authMiddleware({
+  publicRoutes: ["/site", "/api/uploadthing"],
+  async beforeAuth(auth, req) {},
+  async afterAuth(auth, req) {
+    const url = req.nextUrl;
+    const searchParams = url.searchParams.toString();
+    const hostname = req.headers.get("host");
 
-  if (
-    url.pathname === "/" ||
-    (url.pathname === "/site" && hostname === expectedDomain)
-  ) {
-    return NextResponse.rewrite(new URL("/site", req.url));
-  }
+    const pathWithSearchParams = `${url.pathname}${
+      searchParams.length > 0 ? `?${searchParams}` : ""
+    }`;
 
-  return clerkMiddleware(req, NextResponse.next());
-}
+    const customSubDomain = hostname
+      ?.split(`${process.env.NEXT_PUBLIC_DOMAIN}`)
+      .filter(Boolean)[0];
+
+    if (customSubDomain) {
+      return NextResponse.rewrite(
+        new URL(`/${customSubDomain}${pathWithSearchParams}`, req.url)
+      );
+    }
+
+    if (url.pathname === "/sign-in" || url.pathname === "/sign-up") {
+      return NextResponse.redirect(new URL(`/agency/sign-in`, req.url));
+    }
+
+    if (
+      url.pathname === "/" ||
+      (url.pathname === "/site" && hostname === process.env.NEXT_PUBLIC_DOMAIN)
+    ) {
+      return NextResponse.rewrite(new URL("/site", req.url));
+    }
+
+    if (
+      url.pathname.startsWith("/agency") ||
+      url.pathname.startsWith("/subaccount")
+    ) {
+      return NextResponse.rewrite(new URL(`${pathWithSearchParams}`, req.url));
+    }
+
+    return NextResponse.next();
+  },
+});
 
 export const config = {
   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
