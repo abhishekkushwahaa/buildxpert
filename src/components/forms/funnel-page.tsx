@@ -35,10 +35,6 @@ import { useRouter } from "next/navigation";
 import { v4 } from "uuid";
 import { CopyPlusIcon, Trash } from "lucide-react";
 
-interface ResponseType {
-  name: string;
-}
-
 interface CreateFunnelPageProps {
   defaultData?: FunnelPage;
   funnelId: string;
@@ -172,14 +168,10 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
                   disabled={form.formState.isSubmitting}
                   type="button"
                   onClick={async () => {
-                    const response: Funnel = await deleteFunnelPage(
-                      defaultData.id
-                    );
+                    await deleteFunnelPage(defaultData.id);
                     await saveActivityLogsNotification({
                       agencyId: undefined,
-                      description: `Deleted a funnel page | ${
-                        response?.name ?? "Unknown"
-                      }`,
+                      description: `Deleted a funnel page`,
                       subaccountId: subaccountId,
                     });
                     router.refresh();
