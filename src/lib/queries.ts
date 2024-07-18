@@ -144,7 +144,7 @@ export const createTeamUser = async (agencyId: string, user: User) => {
 
 export const verifyAndAcceptInvitation = async () => {
   const user = await currentUser();
-  if (!user) return redirect("/sign-in");
+  if (!user) return redirect("/agency/sign-in");
   const invitationExists = await db.invitation.findUnique({
     where: {
       email: user.emailAddresses[0].emailAddress,
@@ -869,10 +869,31 @@ export const upsertFunnelPage = async (
   return response;
 };
 
-export const deleteFunnelePage = async (funnelPageId: string) => {
-  const response = await db.funnelPage.delete({ where: { id: funnelPageId } });
+export const deleteFunnelPage = async (pageId: string) => {
+  try {
+    // First, check if the record exists
+    const recordExists = await db.funnelPage.findUnique({
+      where: { id: pageId },
+    });
 
-  return response;
+    if (!recordExists) {
+      console.log(`Record with ID ${pageId} does not exist.`);
+      // Handle the non-existence according to your application's logic
+      // For example, you might want to return a specific message or perform some other action
+      return;
+    }
+
+    // If the record exists, proceed with deletion
+    await db.funnelPage.delete({
+      where: { id: pageId },
+    });
+
+    console.log(`Record with ID ${pageId} successfully deleted.`);
+  } catch (error) {
+    // Handle any errors that occur during the operation
+    console.error("Error deleting funnel page:", error);
+    // Depending on your application, you might want to throw the error or return a specific result
+  }
 };
 
 export const getFunnelPageDetails = async (funnelPageId: string) => {
