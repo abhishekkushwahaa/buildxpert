@@ -171,7 +171,9 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
                     const response = await deleteFunnelPage(defaultData.id);
                     await saveActivityLogsNotification({
                       agencyId: undefined,
-                      description: `Deleted a funnel page | ${response?.name}`,
+                      description: `Deleted a funnel page | ${
+                        response?.name ?? "Unknown"
+                      }`,
                       subaccountId: subaccountId,
                     });
                     router.refresh();
