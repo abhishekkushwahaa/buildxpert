@@ -23,7 +23,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Loading from "../global/loading";
 import { useToast } from "../ui/use-toast";
-import { FunnelPage } from "@prisma/client";
+import { Funnel, FunnelPage } from "@prisma/client";
 import { FunnelPageSchema } from "@/lib/types";
 import {
   deleteFunnelPage,
@@ -34,6 +34,10 @@ import {
 import { useRouter } from "next/navigation";
 import { v4 } from "uuid";
 import { CopyPlusIcon, Trash } from "lucide-react";
+
+interface ResponseType {
+  name: string;
+}
 
 interface CreateFunnelPageProps {
   defaultData?: FunnelPage;
@@ -168,7 +172,9 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
                   disabled={form.formState.isSubmitting}
                   type="button"
                   onClick={async () => {
-                    const response = await deleteFunnelPage(defaultData.id);
+                    const response: Funnel = await deleteFunnelPage(
+                      defaultData.id
+                    );
                     await saveActivityLogsNotification({
                       agencyId: undefined,
                       description: `Deleted a funnel page | ${
