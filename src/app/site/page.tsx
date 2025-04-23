@@ -46,303 +46,228 @@ const aboutCards = [
   },
 ];
 
+const featuresList = [
+  {
+    title: "Project Management",
+    description:
+      "Organize, track, and manage projects efficiently with intuitive tools and automation.",
+  },
+  {
+    title: "Client Collaboration",
+    description:
+      "Communicate and collaborate with clients in real time for smoother workflows.",
+  },
+  {
+    title: "Lead Cycle Tracking",
+    description:
+      "Manage invoices, expenses, and budgets effortlessly with built-in financial tools.",
+  },
+  {
+    title: "AI-Powered Automation",
+    description:
+      "Reduce manual work and boost efficiency with intelligent automation features.",
+  },
+  {
+    title: "Customizable Workflows",
+    description:
+      "Adapt BuildXpert to your unique business needs with flexible workflow customization.",
+  },
+  {
+    title: "Analytics & Reporting",
+    description:
+      "Gain insights with real-time reports and analytics to make data-driven decisions.",
+  },
+];
+
 export default function Home() {
   return (
-    <>
-      <ScrollArea className="h-full w-full rounded-md">
-        <section className="h-full w-full md:pt-1 relative flex items-center justify-center flex-col bg-primary-foreground">
-          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-          <p className="text-white mt-[130px] text-center text-wrap text-[10px] md:text-[15px] lg:text-[25px] mb-[-25px]">
-            Run Your Agency or Business in one Place!
-          </p>
-          <div className="bg-gradient-to-r from-primary to-secondary-foreground text-transparent bg-clip-text relative p-4">
-            <h1 className="text-6xl font-bold text-center text-[70px] md:text-[100px] lg:text-[150px]">
-              BuildXpert
-            </h1>
-          </div>
-          <div className="flex justify-center items-center relative md:mt-[-10px]">
-            <Image
-              src={"/assets/preview.png"}
-              alt="banner image"
-              height={1000}
-              width={1200}
-              className="rounded-tl-2xl rounded-tr-2xl border-2 border-muted"
-            />
-            <div className="bottom-0 top-[50%] bg-gradient-to-t dark:from-background left-0 right-0 absolute z-10"></div>
-          </div>
-        </section>
+    <ScrollArea className="h-full w-full rounded-md">
+      {/* HERO SECTION */}
+      <section className="relative flex flex-col items-center justify-center min-h-screen px-4 bg-primary-foreground text-center">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
-        <section
-          id="pricing"
-          className="flex justify-center items-center flex-col gap-4 md:!mt-20 mt-[-60px]"
-        >
-          <h2 className="text-4xl text-center lg:mt-[-30px] md:mt-[-30px] mt-[100px]">
-            Choose what fits you right
-          </h2>
-          <p className="text-muted-foreground text-center">
-            Our straightforward pricing plans are tailored to meet your needs.
-            If you&apos;re not ready to commit, you can get started for free.
-          </p>
-          <div className="flex justify-center gap-4 flex-wrap mt-6 mb-12">
-            {pricingCards.map((card) => (
-              <Card
-                key={card.title}
-                className={clsx("w-[350px] flex flex-col justify-between", {
-                  "border-2 border-primary": card.title === "Unlimited Saas",
-                })}
-              >
-                <CardHeader>
-                  <CardTitle
-                    className={clsx("", {
-                      "text-muted-foreground": card.title !== "Unlimited Saas",
-                    })}
-                  >
-                    {card.title}
-                  </CardTitle>
-                  <CardDescription>
-                    {
-                      pricingCards.find((c) => c.title === card.title)
-                        ?.description
-                    }
-                  </CardDescription>
-                  <CardContent>
-                    <span className="text-4xl font-bold ml-[-23px]">
-                      {card.price}
-                    </span>
-                    <span className="text-muted-foreground">
-                      <span>/m</span>
-                    </span>
-                  </CardContent>
-                  <CardFooter className="flex flex-col items-start gap-4 ml-[-23px]">
-                    <div>
-                      {pricingCards
-                        .find((c) => c.title === card.title)
-                        ?.features.map((feature) => (
-                          <div key={feature} className="flex gap-2">
-                            <Check />
-                            <p>{feature}</p>
-                          </div>
-                        ))}
+        <p className="text-white text-xs sm:text-base md:text-lg lg:text-2xl mt-32 mb-[-10px]">
+          Run Your Agency or Business in One Place!
+        </p>
+
+        <div className="bg-gradient-to-r from-primary to-secondary-foreground text-transparent bg-clip-text relative p-4">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[130px] font-bold">
+            BuildXpert
+          </h1>
+        </div>
+
+        <div className="relative mt-4 md:mt-0 w-full max-w-[90vw] md:max-w-[80vw]">
+          <Image
+            src="/assets/preview.png"
+            alt="banner image"
+            width={1200}
+            height={800}
+            className="rounded-t-2xl border-2 border-muted w-full object-cover"
+          />
+          <div className="absolute inset-x-0 top-1/2 h-1/3 bg-gradient-to-t dark:from-background z-10" />
+        </div>
+      </section>
+
+      {/* PRICING SECTION */}
+      <section id="pricing" className="text-center px-4 py-20 bg-background">
+        <h2 className="text-4xl font-bold">Choose what fits you right</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto mt-2">
+          Our straightforward pricing plans are tailored to meet your needs.
+          Start for free anytime.
+        </p>
+
+        <div className="flex flex-wrap justify-center gap-6 mt-10">
+          {pricingCards.map((card) => (
+            <Card
+              key={card.title}
+              className={clsx("w-full max-w-sm flex flex-col justify-between", {
+                "border-2 border-primary": card.title === "Unlimited Saas",
+              })}
+            >
+              <CardHeader>
+                <CardTitle
+                  className={clsx({
+                    "text-muted-foreground": card.title !== "Unlimited Saas",
+                  })}
+                >
+                  {card.title}
+                </CardTitle>
+                <CardDescription>{card.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="text-4xl font-bold">{card.price}</div>
+                <span className="text-muted-foreground">/m</span>
+              </CardContent>
+              <CardFooter className="flex flex-col gap-4">
+                <div className="space-y-2 text-left">
+                  {card.features.map((feature) => (
+                    <div key={feature} className="flex items-center gap-2">
+                      <Check className="text-primary" />
+                      <span>{feature}</span>
                     </div>
-                    <Link
-                      href={`/agency?plan=${card.priceId}`}
-                      className={clsx(
-                        "w-[107%] mt-2 text-center bg-primary p-2 rounded-md text-black",
-                        {
-                          "!bg-muted-foreground":
-                            card.title !== "Unlimited Saas",
-                        }
-                      )}
-                    >
-                      Get Started
-                    </Link>
-                  </CardFooter>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </section>
+                  ))}
+                </div>
+                <Link
+                  href={`/agency?plan=${card.priceId}`}
+                  className={clsx(
+                    "block w-full py-2 rounded-md text-white font-medium",
+                    {
+                      "bg-primary": card.title === "Unlimited Saas",
+                      "bg-muted-foreground": card.title !== "Unlimited Saas",
+                    }
+                  )}
+                >
+                  Get Started
+                </Link>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </section>
 
-        <section
-          id="about"
-          className="flex flex-col items-center text-center py-20 bg-muted/30"
-        >
-          <h2 className="text-4xl font-bold text-primary">About BuildXpert</h2>
-          <p className="text-muted-foreground max-w-2xl mt-4">
-            Empowering businesses with cutting-edge technology, BuildXpert is
-            your one-stop solution for managing operations seamlessly.
-          </p>
+      {/* ABOUT SECTION */}
+      <section id="about" className="py-20 px-4 bg-muted/30 text-center">
+        <h2 className="text-4xl font-bold text-primary">About BuildXpert</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
+          Empowering businesses with cutting-edge technology, BuildXpert is your
+          one-stop solution for managing operations seamlessly.
+        </p>
 
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            {aboutCards.map((card) => (
-              <Card
-                key={card.title}
-                className="p-6 ml-5 mr-5 bg-background shadow-lg rounded-lg border"
-              >
-                <CardHeader>
-                  <h3 className="text-2xl font-semibold text-primary">
-                    {card.title}
-                  </h3>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{card.description}</p>
-                  <ul className="mt-4 space-y-2">
-                    {card.features.map((feature) => (
-                      <li
-                        key={feature}
-                        className="flex items-center gap-2 text-muted-foreground"
-                      >
-                        <Check className="text-primary" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          {aboutCards.map((card) => (
+            <Card
+              key={card.title}
+              className="bg-background p-6 shadow-lg rounded-lg border"
+            >
+              <CardHeader>
+                <h3 className="text-2xl font-semibold text-primary">
+                  {card.title}
+                </h3>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">{card.description}</p>
+                <ul className="mt-4 space-y-2 text-left">
+                  {card.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-2">
+                      <Check className="text-primary" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
 
-        <section id="features" className="py-20 bg-transparent text-center">
-          <h2 className="text-4xl font-bold text-primary">Key Features</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
-            BuildXpert is packed with powerful features to help you streamline
-            operations, collaborate effortlessly, and scale your business.
-          </p>
+      {/* FEATURES SECTION */}
+      <section id="features" className="py-20 px-4 text-center bg-transparent">
+        <h2 className="text-4xl font-bold text-primary">Key Features</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
+          BuildXpert is packed with powerful features to streamline operations,
+          enhance collaboration, and scale your business.
+        </p>
 
-          <div className="grid md:grid-cols-3 gap-6 mt-12 px-5">
-            {[
-              {
-                title: "Seamless Project Management",
-                description:
-                  "Organize, track, and manage projects efficiently with intuitive tools and automation.",
-              },
-              {
-                title: "Advanced Client Collaboration",
-                description:
-                  "Communicate and collaborate with clients in real time for smoother workflows.",
-              },
-              {
-                title: "Comprehensive Financial Tracking",
-                description:
-                  "Manage invoices, expenses, and budgets effortlessly with built-in financial tools.",
-              },
-              {
-                title: "AI-Powered Automation",
-                description:
-                  "Reduce manual work and boost efficiency with intelligent automation features.",
-              },
-              {
-                title: "Customizable Workflows",
-                description:
-                  "Adapt BuildXpert to your unique business needs with flexible workflow customization.",
-              },
-              {
-                title: "In-Depth Analytics & Reporting",
-                description:
-                  "Gain insights with real-time reports and analytics to make data-driven decisions.",
-              },
-            ].map((feature, index) => (
-              <Card
-                key={index}
-                className="p-6 bg-background shadow-lg rounded-lg border"
-              >
-                <CardHeader>
-                  <h3 className="text-2xl font-semibold text-primary">
-                    {feature.title}
-                  </h3>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          {featuresList.map((feature, idx) => (
+            <Card
+              key={idx}
+              className="p-6 bg-background shadow-lg rounded-lg border"
+            >
+              <CardHeader>
+                <h3 className="text-2xl font-semibold text-primary">
+                  {feature.title}
+                </h3>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">{feature.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
 
-        <section id="docs" className="py-20 bg-muted/30 text-center text-white">
-          <h2 className="text-4xl font-bold">Documentation</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
-            Get started quickly with our in-depth guides and API documentation.
-          </p>
+      {/* DOCUMENTATION SECTION */}
+      <section id="docs" className="py-20 px-4 bg-muted/30 text-center">
+        <h2 className="text-4xl font-bold text-white">Documentation</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
+          Get started quickly with our in-depth guides and API documentation.
+        </p>
 
-          <div className="mt-12 space-y-12 px-5 md:px-20">
-            <div className="border-l-4 border-primary pl-6">
-              <h3 className="text-xl font-semibold text-white">
-                Getting Started
-              </h3>
-              <p className="text-muted-foreground mt-2">
-                Learn how to set up your workspace and configure BuildXpert for
-                optimal use.
-              </p>
+        <div className="mt-12 space-y-12 max-w-4xl mx-auto text-left">
+          {[
+            {
+              title: "Getting Started",
+              description:
+                "Learn how to set up your workspace and configure BuildXpert for optimal use.",
+              link: "/docs/getting-started",
+            },
+            {
+              title: "API Reference",
+              description:
+                "Explore our comprehensive API documentation to integrate BuildXpert seamlessly.",
+              link: "/docs/api-reference",
+            },
+            {
+              title: "Customization Guide",
+              description:
+                "Discover how to tailor BuildXpert to match your business needs.",
+              link: "/docs/customization",
+            },
+          ].map((doc) => (
+            <div key={doc.title} className="border-l-4 border-primary pl-6">
+              <h3 className="text-xl font-semibold text-white">{doc.title}</h3>
+              <p className="text-muted-foreground mt-2">{doc.description}</p>
               <Link
-                href="/docs/getting-started"
+                href={doc.link}
                 className="text-primary font-medium mt-2 inline-block"
               >
                 Read More →
               </Link>
             </div>
-
-            <div className="border-l-4 border-primary pl-6">
-              <h3 className="text-xl font-semibold text-white">
-                API Reference
-              </h3>
-              <p className="text-muted-foreground mt-2">
-                Explore our comprehensive API documentation to integrate
-                BuildXpert seamlessly.
-              </p>
-              <Link
-                href="/docs/api-reference"
-                className="text-primary font-medium mt-2 inline-block"
-              >
-                Read More →
-              </Link>
-            </div>
-
-            <div className="border-l-4 border-primary pl-6">
-              <h3 className="text-xl font-semibold text-white">
-                Customization Guide
-              </h3>
-              <p className="text-muted-foreground mt-2">
-                Discover how to tailor BuildXpert to match your business needs.
-              </p>
-              <Link
-                href="/docs/customization"
-                className="text-primary font-medium mt-2 inline-block"
-              >
-                Read More →
-              </Link>
-            </div>
-
-            <div className="border-l-4 border-primary pl-6">
-              <h3 className="text-xl font-semibold text-white">
-                Best Practices
-              </h3>
-              <p className="text-muted-foreground mt-2">
-                Follow industry best practices to maximize efficiency and
-                collaboration.
-              </p>
-              <Link
-                href="/docs/best-practices"
-                className="text-primary font-medium mt-2 inline-block"
-              >
-                Read More →
-              </Link>
-            </div>
-
-            <div className="border-l-4 border-primary pl-6">
-              <h3 className="text-xl font-semibold text-white">
-                Security & Compliance
-              </h3>
-              <p className="text-muted-foreground mt-2">
-                Understand our security protocols and compliance measures to
-                protect your data.
-              </p>
-              <Link
-                href="/docs/security"
-                className="text-primary font-medium mt-2 inline-block"
-              >
-                Read More →
-              </Link>
-            </div>
-
-            <div className="border-l-4 border-primary pl-6">
-              <h3 className="text-xl font-semibold text-white">
-                FAQs & Troubleshooting
-              </h3>
-              <p className="text-muted-foreground mt-2">
-                Find solutions to common issues and frequently asked questions.
-              </p>
-              <Link
-                href="/docs/faqs"
-                className="text-primary font-medium mt-2 inline-block"
-              >
-                Read More →
-              </Link>
-            </div>
-          </div>
-        </section>
-      </ScrollArea>
-    </>
+          ))}
+        </div>
+      </section>
+    </ScrollArea>
   );
 }
