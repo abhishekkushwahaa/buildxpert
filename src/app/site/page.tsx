@@ -82,7 +82,6 @@ const featuresList = [
 export default function Home() {
   return (
     <ScrollArea className="h-full w-full rounded-md">
-      {/* HERO SECTION */}
       <section className="relative flex flex-col items-center justify-center min-h-screen px-4 bg-primary-foreground text-center">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
@@ -108,7 +107,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRICING SECTION */}
       <section id="pricing" className="text-center px-4 py-20 bg-background">
         <h2 className="text-4xl font-bold">Choose what fits you right</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mt-2">
@@ -152,7 +150,7 @@ export default function Home() {
                   className={clsx(
                     "block w-full py-2 rounded-md text-white font-medium",
                     {
-                      "bg-primary": card.title === "Unlimited Saas",
+                      "bg-muted": card.title === "Unlimited Saas",
                       "bg-muted-foreground": card.title !== "Unlimited Saas",
                     }
                   )}
@@ -165,7 +163,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ABOUT SECTION */}
       <section id="about" className="py-20 px-4 bg-muted/30 text-center">
         <h2 className="text-4xl font-bold text-primary">About BuildXpert</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
@@ -200,7 +197,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURES SECTION */}
       <section id="features" className="py-20 px-4 text-center bg-transparent">
         <h2 className="text-4xl font-bold text-primary">Key Features</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
@@ -227,7 +223,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DOCUMENTATION SECTION */}
       <section id="docs" className="py-20 px-4 bg-muted/30 text-center">
         <h2 className="text-4xl font-bold text-white">Documentation</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
